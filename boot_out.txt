@@ -1,3 +1,0 @@
-Adafruit CircuitPython 10.0.3 on 2025-10-17; Waveshare RP2350-Zero with rp2350
-Board ID:waveshare_rp2350_zero
-UID:07C7CABD2C9FFB4E

